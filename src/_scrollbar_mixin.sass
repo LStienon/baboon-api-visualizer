@@ -1,0 +1,7 @@
+@mixin hide-scrollbar
+  scrollbar-width: none // REDUCED FIREFOX
+  scrollbar-color: transparent transparent
+  &::-webkit-scrollbar
+    width: 0 // REDUCED FOR BRAVE ET EDGE
+  &::-webkit-scrollbar-thumb
+    background-color: transparent

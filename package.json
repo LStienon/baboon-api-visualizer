@@ -9,11 +9,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.5.13"
+    "axios": "^1.7.9",
+    "swiper": "^11.2.2",
+    "vue": "^3.5.13",
+    "vue3-spinners": "^1.2.2",
+    "vue3-tilt": "^0.0.4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
+    "sass-embedded": "^1.83.4",
     "typescript": "~5.7.2",
     "vite": "^6.1.0",
     "vue-tsc": "^2.2.0"
