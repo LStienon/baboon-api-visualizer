@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import SectionLayout from "./layouts/SectionLayout.vue";
 import SingleRandomImageSection from "./sections/SingleRandomImageSection.vue";
+import AIGeneratedImageSection from "./sections/AIGeneratedImageSection.vue";
+import ManyRandomImageSection from "./sections/ManyRandomImageSection.vue";
 
 </script>
 <template>
@@ -23,9 +25,7 @@ import SingleRandomImageSection from "./sections/SingleRandomImageSection.vue";
           title="MORE random images of baboons"
           description="What's better that 1 image of an ugly baboon ? MANY images of ugly baboons. Nobody asked for it, but here it is : an endpoint to fetch a bunch of images at once. Now I'll let you enjoy this lil' slider I made just for you, and you can play with it too ! Just change the setting to vary the number of images inside the carousel."
       >
-        <div class="test">
-          le contenu !!!
-        </div>
+        <ManyRandomImageSection />
       </SectionLayout>
 
       <!-- SIMPLE SECTION WITH RANDOM IMAGE BUTTON -->
@@ -33,9 +33,7 @@ import SingleRandomImageSection from "./sections/SingleRandomImageSection.vue";
           title="The golden age of AI, baby !"
           description="Nowadays, everything comes shipped with AI features. ChatGPT here, Copilot there, ... They're everywhere, and especially where you don't want them. But here, it was a god given mission to provide an endpoint that creates a brand new, AI generated, image of a baboon. Thanks to OpenAI's SDK, your Baboon API is able to make this work !"
       >
-        <div class="test">
-          le contenu !!!
-        </div>
+        <AIGeneratedImageSection />
       </SectionLayout>
 
       <!-- SIMPLE SECTION WITH RANDOM IMAGE BUTTON -->
