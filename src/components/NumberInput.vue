@@ -1,29 +1,56 @@
 <script setup lang="ts">
-import {ref, watch} from "vue";
-import BasicButton from "./BasicButton.vue";
+import {ref, watch} from "vue"
+import BasicButton from "./BasicButton.vue"
 
 const {
   initialValue,
   max,
   min,
+  increment = 1,
   changeCallback
 } = defineProps<{
   initialValue: number
   max: number
   min: number
+  increment?: number
   changeCallback: (newValue: number) => void
 }>()
 
 const localValue = ref<number>(initialValue)
 const validateInput = () => {
-  if (localValue.value < min) localValue.value = min;
-  if (localValue.value > max) localValue.value = max;
+  let newValue = localValue.value
+  newValue = Math.round(newValue)
+  newValue = Math.max(min, Math.min(max, newValue))
+  localValue.value = newValue
 }
+
 const incrementValue = () => {
-  if (localValue.value < max) localValue.value++
+  const newValue = localValue.value + increment
+  if (newValue <= max) {
+    if (localValue.value % increment !== 0) {
+      localValue.value = localValue.value - (localValue.value % increment) + increment
+    }
+    else {
+      localValue.value = newValue
+    }
+  }
+  else {
+    localValue.value = max
+  }
 }
 const decrementValue = () => {
-  if (localValue.value > min) localValue.value--
+  const newValue = localValue.value - increment
+  if (newValue >= min) {
+    if (localValue.value % increment !== 0) {
+      localValue.value = localValue.value - (localValue.value % increment)
+    }
+    else {
+      localValue.value = newValue
+    }
+  }
+  else {
+    localValue.value = min
+  }
 }
 
 watch(localValue, (value, oldValue) => {
@@ -34,23 +61,24 @@ watch(localValue, (value, oldValue) => {
 </script>
 <template>
   <div class="input-container">
-    <BasicButton text="-"
-                 :on-click="decrementValue"
-                 :disabled="false"
-                 custom-class="bigger-font"
+    <BasicButton
+        text="-"
+        :on-click="decrementValue"
+        :disabled="localValue <= min"
+        custom-class="bigger-font"
     />
     <input
-        v-model="localValue"
+        v-model.number="localValue"
         type="number"
         :min="min"
         :max="max"
-        @input="validateInput"
-        placeholder="Enter a number (1-20)"
+        @focusout="validateInput"
     />
-    <BasicButton text="+"
-                 :on-click="incrementValue"
-                 :disabled="false"
-                 custom-class="bigger-font"
+    <BasicButton
+        text="+"
+        :on-click="incrementValue"
+        :disabled="localValue >= max"
+        custom-class="bigger-font"
     />
   </div>
 </template>
@@ -77,9 +105,6 @@ watch(localValue, (value, oldValue) => {
     width: 3.5rem
     padding-top: 12px
     padding-bottom: 8px
-
-    ::selection
-      background-color: red
 
     &:focus
       border: solid $baseTextColor 2px

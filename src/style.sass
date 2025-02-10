@@ -1,19 +1,26 @@
 @use "scrollbar_mixin" as *
 @use "variables" as *
 
-
 \:root
   font-family: BigBlueTerm, Inter, sans-serif
   line-height: 1.5
   font-weight: 400
-  color-scheme: light dark
-  color: $baseTextColor
-  background-color: #242424
   font-synthesis: none
   text-rendering: optimizeLegibility
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
-  @include hide-scrollbar
+
+  // DARK MODE IS ENFORCED
+  color-scheme: dark
+  color: $baseTextColor !important
+  background-color: #242424 !important
+
+  @include custom-scrollbar
+  *
+    @include hide-scrollbar
+
+html.dark-theme, body.dark-theme
+  color-scheme: dark
 
 ::selection
   background-color: $baseBlue

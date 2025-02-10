@@ -13,6 +13,17 @@ export const BaboonApiService = {
     }
   },
 
+  getOneSizedRandomImage: async (width: number, height: number): Promise<string> => {
+    try {
+      const res = await ApiService.get(`/baboon/random/${width}/${height}`) as { url: string }
+      return res.url
+    }
+    catch (e) {
+      console.log(e)
+      return ""
+    }
+  },
+
   getOneMadeByAI: async (): Promise<string> => {
     try {
       const res = await ApiService.get('/baboon/ai') as { url: string }

@@ -82,14 +82,10 @@ onMounted(() => {
 .image-container
   aspect-ratio: 1/1
   height: 100%
-  border: solid white 2px
-  border-radius: 9px
+
   display: flex
   justify-content: center
   align-items: center
-  overflow: hidden
-
-
 
 .container
   display: flex
