@@ -6,6 +6,7 @@ import FailureMessage from "../components/FailureMessage.vue";
 import LoadingIndicator from "../components/LoadingIndicator.vue";
 import BaboonSlider from "../components/BaboonSlider.vue";
 import NumberInput from "../components/NumberInput.vue";
+import {useClientStore} from "../stores/client_store.ts";
 
 const urls = ref<string[]>([])
 const loading = ref<boolean>(false)
@@ -27,6 +28,7 @@ onMounted(() => {
   fetchImages()
 })
 
+const clientStore = useClientStore()
 
 </script>
 <template>
@@ -39,7 +41,7 @@ onMounted(() => {
             :disabled="loading"
         />
         <NumberInput :initial-value="imageQuantity"
-                     :max="20"
+                     :max="clientStore.isClientMobile ? 19 : 20"
                      :min="1"
                      :change-callback="changeImageQuantity"
         />
@@ -87,6 +89,9 @@ onMounted(() => {
   justify-content: center
   align-items: center
 
+  @include for-mobile
+    width: 100%
+
 .container
   display: flex
   width: 100%
@@ -94,18 +99,35 @@ onMounted(() => {
   margin-top: 3rem
   margin-bottom: 6rem
 
+  @include for-mobile
+    flex-direction: column-reverse
+    margin-top: 2rem
+    margin-bottom: 1rem
+    height: unset
+
 .left-content
   flex: 1
   display: flex
   align-items: center
   position: relative
 
+  @include for-mobile
+    justify-content: end
+
   > div
     width: 50%
+
+    @include for-mobile
+      width: 100%
+      margin-top: .75rem
 
 .right-content
   display: flex
   align-items: center
   justify-content: end
+
+  @include for-mobile
+    width: 100%
+    margin-bottom: 2rem
 
 </style>

@@ -5,6 +5,15 @@ import AIGeneratedImageSection from "./sections/AIGeneratedImageSection.vue";
 import SizedRandomImageSection from "./sections/SizedRandomImageSection.vue";
 import ManyRandomImagesSection from "./sections/ManyRandomImagesSection.vue";
 import BaboonFooter from "./components/BaboonFooter.vue";
+import {onMounted} from "vue";
+import {useClientStore} from "./stores/client_store.ts";
+
+const {setClientMobile} = useClientStore()
+
+onMounted(() => {
+  const aspectRatio: number = window.innerWidth / window.innerHeight
+  setClientMobile(aspectRatio < 1.2)
+})
 
 </script>
 <template>
@@ -56,6 +65,7 @@ import BaboonFooter from "./components/BaboonFooter.vue";
   </main>
 </template>
 <style lang="sass">
+@use './variables' as *
 
 // GENERAL STYLES HERE
 main
@@ -63,9 +73,13 @@ main
   display: flex
   flex-direction: column
 
+header
+  @include for-mobile
+    h1
+      font-size: 2rem
+      width: 100%
+
 .test
   background-color: blue
-
-
 
 </style>

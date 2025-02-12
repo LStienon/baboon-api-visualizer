@@ -111,6 +111,9 @@ const seeImage = (url: string) => {
   align-items: center
   overflow: hidden
 
+  @include for-mobile
+    width: 100%
+
   > img
     max-height: 100%
     max-width: 100%
@@ -123,14 +126,25 @@ const seeImage = (url: string) => {
   margin-top: 3rem
   margin-bottom: 6rem
 
+  @include for-mobile
+    flex-direction: column-reverse
+    margin-top: 2rem
+    margin-bottom: 1rem
+    height: unset
+
 .left-content
   flex: 1
   display: flex
   align-items: center
   position: relative
 
+  @include for-mobile
+    justify-content: end
+
   > div
     width: 50%
+    @include for-mobile
+      width: 100%
 
   p
     margin: 2rem 0 0 0
@@ -141,5 +155,9 @@ const seeImage = (url: string) => {
   justify-content: end
   &:hover
     cursor: pointer
+
+  @include for-mobile
+    width: 100%
+    margin-bottom: 2rem
 
 </style>

@@ -18,6 +18,7 @@ const {title, description} = defineProps<{
   </article>
 </template>
 <style scoped lang="sass">
+@use "../variables" as *
 
 .container
   padding: 0 10%
@@ -26,6 +27,10 @@ const {title, description} = defineProps<{
     margin: 1rem 0
     text-align: left
     width: 75%
+
+  @include for-mobile
+    padding: 0 5%
+    margin-bottom: 1.75rem
 
 .title
   width: fit-content

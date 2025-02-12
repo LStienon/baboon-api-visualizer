@@ -1,2 +1,8 @@
 $baseTextColor: rgba(255, 255, 255, 0.87)
 $baseBlue: blue
+
+$breakpoint: ("mobile": 1000px)
+
+@mixin for-mobile
+  @media screen and (max-width: map-get($breakpoint, mobile))
+    @content

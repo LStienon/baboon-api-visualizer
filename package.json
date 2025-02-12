@@ -1,7 +1,7 @@
 {
   "name": "baboon-api-visualizer",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^1.7.9",
+    "pinia": "^3.0.1",
     "swiper": "^11.2.2",
     "vue": "^3.5.13",
     "vue3-spinners": "^1.2.2"
