@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import BasicButton from "../components/BasicButton.vue"
+import BasicButton from "../BasicButton.vue"
 import {onMounted, ref} from "vue";
-import {BaboonApiService} from "../services/baboon_api_service.ts";
-import FailureMessage from "../components/FailureMessage.vue";
-import LoadingIndicator from "../components/LoadingIndicator.vue";
-import NumberInput from "../components/NumberInput.vue";
+import {BaboonApiService} from "../../services/baboon_api_service.ts";
+import FailureMessage from "../FailureMessage.vue";
+import LoadingIndicator from "../LoadingIndicator.vue";
+import NumberInput from "../NumberInput.vue";
 
 const url = ref<string>("")
 const loading = ref<boolean>(false)
@@ -81,7 +81,7 @@ const seeImage = (url: string) => {
   </div>
 </template>
 <style scoped lang="sass">
-@use '../variables' as *
+@use '../../variables' as *
 
 .input-container
   display: flex
@@ -153,6 +153,8 @@ const seeImage = (url: string) => {
   display: flex
   align-items: center
   justify-content: end
+  flex: 1
+
   &:hover
     cursor: pointer
 

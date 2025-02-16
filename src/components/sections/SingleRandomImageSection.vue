@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import BasicButton from "../components/BasicButton.vue"
+import BasicButton from "../BasicButton.vue"
 import {onMounted, ref} from "vue";
-import {BaboonApiService} from "../services/baboon_api_service.ts";
-import FailureMessage from "../components/FailureMessage.vue";
-import LoadingIndicator from "../components/LoadingIndicator.vue";
+import {BaboonApiService} from "../../services/baboon_api_service.ts";
+import FailureMessage from "../FailureMessage.vue";
+import LoadingIndicator from "../LoadingIndicator.vue";
 
 const currentImageUrl = ref<string>("")
 const loading = ref<boolean>(false)
@@ -15,6 +15,7 @@ const fetchNewImage = async () => {
 
 onMounted(() => {
   fetchNewImage()
+  const image = document.querySelector('.image-container > img')
 })
 
 </script>
@@ -48,7 +49,7 @@ onMounted(() => {
   </div>
 </template>
 <style scoped lang="sass">
-@use '../variables' as *
+@use '../../variables' as *
 
 .container
   display: flex
@@ -80,6 +81,7 @@ onMounted(() => {
   display: flex
   align-items: center
   justify-content: end
+  flex: 1
 
   @include for-mobile
     width: 100%
@@ -92,7 +94,7 @@ onMounted(() => {
   border-radius: 9px
   display: flex
   justify-content: center
-  align-items: center
+  //align-items: center
   overflow: hidden
 
   @include for-mobile
@@ -102,5 +104,6 @@ onMounted(() => {
     min-height: 100%
     min-width: 100%
     object-fit: cover
+
 
 </style>

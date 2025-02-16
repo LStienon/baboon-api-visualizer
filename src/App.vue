@@ -1,18 +1,17 @@
 <script setup lang="ts">
 import SectionLayout from "./layouts/SectionLayout.vue";
-import SingleRandomImageSection from "./sections/SingleRandomImageSection.vue";
-import AIGeneratedImageSection from "./sections/AIGeneratedImageSection.vue";
-import SizedRandomImageSection from "./sections/SizedRandomImageSection.vue";
-import ManyRandomImagesSection from "./sections/ManyRandomImagesSection.vue";
+import SingleRandomImageSection from "./components/sections/SingleRandomImageSection.vue";
+import AIGeneratedImageSection from "./components/sections/AIGeneratedImageSection.vue";
+import SizedRandomImageSection from "./components/sections/SizedRandomImageSection.vue";
+import ManyRandomImagesSection from "./components/sections/ManyRandomImagesSection.vue";
 import BaboonFooter from "./components/BaboonFooter.vue";
 import {onMounted} from "vue";
 import {useClientStore} from "./stores/client_store.ts";
 
-const {setClientMobile} = useClientStore()
+const {initThingies} = useClientStore()
 
 onMounted(() => {
-  const aspectRatio: number = window.innerWidth / window.innerHeight
-  setClientMobile(aspectRatio < 1.2)
+  initThingies()
 })
 
 </script>

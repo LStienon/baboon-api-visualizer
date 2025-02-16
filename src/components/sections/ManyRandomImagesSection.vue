@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import BasicButton from "../components/BasicButton.vue"
+import BasicButton from "../BasicButton.vue"
 import {onMounted, ref} from "vue";
-import {BaboonApiService} from "../services/baboon_api_service.ts";
-import FailureMessage from "../components/FailureMessage.vue";
-import LoadingIndicator from "../components/LoadingIndicator.vue";
-import BaboonSlider from "../components/BaboonSlider.vue";
-import NumberInput from "../components/NumberInput.vue";
-import {useClientStore} from "../stores/client_store.ts";
+import {BaboonApiService} from "../../services/baboon_api_service.ts";
+import FailureMessage from "../FailureMessage.vue";
+import LoadingIndicator from "../LoadingIndicator.vue";
+import BaboonSlider from "../BaboonSlider.vue";
+import NumberInput from "../NumberInput.vue";
+import {useClientStore} from "../../stores/client_store.ts";
 
 const urls = ref<string[]>([])
 const loading = ref<boolean>(false)
@@ -61,7 +61,7 @@ const clientStore = useClientStore()
   </div>
 </template>
 <style scoped lang="sass">
-@use '../variables' as *
+@use '../../variables' as *
 
 .input-container
   display: flex
@@ -125,6 +125,7 @@ const clientStore = useClientStore()
   display: flex
   align-items: center
   justify-content: end
+  flex: 1
 
   @include for-mobile
     width: 100%

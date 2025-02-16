@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import BasicButton from "../components/BasicButton.vue"
+import BasicButton from "../BasicButton.vue"
 import {ref} from "vue";
-import {BaboonApiService} from "../services/baboon_api_service.ts";
-import FailureMessage from "../components/FailureMessage.vue";
-import LoadingIndicator from "../components/LoadingIndicator.vue";
+import {BaboonApiService} from "../../services/baboon_api_service.ts";
+import FailureMessage from "../FailureMessage.vue";
+import LoadingIndicator from "../LoadingIndicator.vue";
 
 const currentImageUrl = ref<string>("")
 const loading = ref<boolean>(false)
@@ -18,7 +18,7 @@ const fetchNewImage = async () => {
 </script>
 <template>
   <div class="container">
-    <div class="left-content">
+    <div :class="`left-content ${initDone ? 'makePlacePlease' : ''}`">
       <div>
         <BasicButton
             text="Create an image !"
@@ -48,7 +48,7 @@ const fetchNewImage = async () => {
   </div>
 </template>
 <style scoped lang="sass">
-@use '../variables' as *
+@use '../../variables' as *
 
 .image-container
   aspect-ratio: 1/1
@@ -80,6 +80,10 @@ const fetchNewImage = async () => {
     margin-top: 2rem
     margin-bottom: 1rem
     height: unset
+
+.makePlacePlease
+  @include for-mobile
+    margin-bottom: 3rem
 
 .left-content
   flex: 1
@@ -113,6 +117,7 @@ const fetchNewImage = async () => {
   display: flex
   align-items: center
   justify-content: end
+  flex: 1
 
   @include for-mobile
     width: 100%
