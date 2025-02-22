@@ -5,6 +5,7 @@ import {BaboonApiService} from "../../services/baboon_api_service.ts";
 import FailureMessage from "../FailureMessage.vue";
 import LoadingIndicator from "../LoadingIndicator.vue";
 import NumberInput from "../NumberInput.vue";
+import {GAService} from "../../services/ga_service.ts";
 
 const url = ref<string>("")
 const loading = ref<boolean>(false)
@@ -12,6 +13,10 @@ const fetchSizedImage = async () => {
   loading.value = true
   url.value = await BaboonApiService.getOneSizedRandomImage(imageSize.value.width, imageSize.value.height)
   loading.value = false
+}
+const clickAction = async () => {
+  await fetchSizedImage()
+  GAService.trackClick("sized_image")
 }
 
 const imageSize = ref<{
@@ -43,7 +48,7 @@ const seeImage = (url: string) => {
       <div>
         <BasicButton
             text="Size me an image !"
-            :on-click="fetchSizedImage"
+            :on-click="clickAction"
             :disabled="loading"
         />
         <p>Width</p>

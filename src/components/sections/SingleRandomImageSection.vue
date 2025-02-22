@@ -4,6 +4,7 @@ import {onMounted, ref} from "vue";
 import {BaboonApiService} from "../../services/baboon_api_service.ts";
 import FailureMessage from "../FailureMessage.vue";
 import LoadingIndicator from "../LoadingIndicator.vue";
+import {GAService} from "../../services/ga_service.ts";
 
 const currentImageUrl = ref<string>("")
 const loading = ref<boolean>(false)
@@ -12,10 +13,13 @@ const fetchNewImage = async () => {
   currentImageUrl.value = await BaboonApiService.getOneRandomImage()
   loading.value = false
 }
+const clickAction = async () => {
+  await fetchNewImage()
+  GAService.trackClick("single_image")
+}
 
 onMounted(() => {
   fetchNewImage()
-  const image = document.querySelector('.image-container > img')
 })
 
 </script>
@@ -25,7 +29,7 @@ onMounted(() => {
       <div>
         <BasicButton
             text="Get an image !"
-            :on-click="fetchNewImage"
+            :on-click="clickAction"
             :disabled="loading"
         />
       </div>

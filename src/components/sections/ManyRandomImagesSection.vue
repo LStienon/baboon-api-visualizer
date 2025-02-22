@@ -7,6 +7,7 @@ import LoadingIndicator from "../LoadingIndicator.vue";
 import BaboonSlider from "../BaboonSlider.vue";
 import NumberInput from "../NumberInput.vue";
 import {useClientStore} from "../../stores/client_store.ts";
+import {GAService} from "../../services/ga_service.ts";
 
 const urls = ref<string[]>([])
 const loading = ref<boolean>(false)
@@ -18,6 +19,11 @@ const fetchImages = async () => {
   }
   loading.value = false
 }
+const clickAction = async () => {
+  await fetchImages()
+  GAService.trackClick("many_images")
+}
+
 
 const imageQuantity = ref<number>(3);
 const changeImageQuantity = (newValue: number) => imageQuantity.value = newValue
@@ -37,11 +43,11 @@ const clientStore = useClientStore()
       <div>
         <BasicButton
             text="Get a load of images !"
-            :on-click="fetchImages"
+            :on-click="clickAction"
             :disabled="loading"
         />
         <NumberInput :initial-value="imageQuantity"
-                     :max="clientStore.isClientMobile ? 19 : 20"
+                     :max="clientStore.isClientMobile ? 15 : 20"
                      :min="1"
                      :change-callback="changeImageQuantity"
         />

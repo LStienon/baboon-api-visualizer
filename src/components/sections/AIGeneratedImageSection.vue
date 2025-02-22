@@ -4,6 +4,7 @@ import {ref} from "vue";
 import {BaboonApiService} from "../../services/baboon_api_service.ts";
 import FailureMessage from "../FailureMessage.vue";
 import LoadingIndicator from "../LoadingIndicator.vue";
+import {GAService} from "../../services/ga_service.ts";
 
 const currentImageUrl = ref<string>("")
 const loading = ref<boolean>(false)
@@ -14,6 +15,10 @@ const fetchNewImage = async () => {
   currentImageUrl.value = await BaboonApiService.getOneMadeByAI()
   loading.value = false
 }
+const clickAction = async () => {
+  await fetchNewImage()
+  GAService.trackClick("ai_image")
+}
 
 </script>
 <template>
@@ -22,7 +27,7 @@ const fetchNewImage = async () => {
       <div>
         <BasicButton
             text="Create an image !"
-            :on-click="fetchNewImage"
+            :on-click="clickAction"
             :disabled="loading"
         />
         <p v-if="initDone">(don't worry, it usually takes about 16 seconds to complete)</p>
