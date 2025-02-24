@@ -94,6 +94,8 @@ const clientStore = useClientStore()
   display: flex
   justify-content: center
   align-items: center
+  border: solid $baseTextColor 2px
+  border-radius: 9px
 
   @include for-mobile
     width: 100%

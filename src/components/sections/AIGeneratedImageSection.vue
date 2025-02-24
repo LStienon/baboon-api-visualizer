@@ -58,7 +58,7 @@ const clickAction = async () => {
 .image-container
   aspect-ratio: 1/1
   height: 100%
-  border: solid white 2px
+  border: solid $baseTextColor 2px
   border-radius: 9px
   display: flex
   justify-content: center
