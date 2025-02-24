@@ -11,6 +11,8 @@ const pinia = createPinia()
 register()
 ApiService.init()
 
+// console.log(import.meta.env.VITE_GOOGLE_ANALYTICS_MEASURE_ID)
+
 const app = createApp(App)
 app
     .use(createGtm({
