@@ -14,9 +14,8 @@ ApiService.init()
 const app = createApp(App)
     .use(VueGtag, {
       property: {
-        id: import.meta.env.VITE_GOOGLE_ANALYTICS_MEASURE_ID
-      },
-      useDebugger: true
+        id: import.meta.env.VITE_GA_TRACKING_ID
+      }
     })
     .use(pinia)
 
