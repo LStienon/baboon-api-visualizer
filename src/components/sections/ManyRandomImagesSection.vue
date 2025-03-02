@@ -21,7 +21,7 @@ const fetchImages = async () => {
 }
 const clickAction = async () => {
   await fetchImages()
-  GAService.trackClick("many_images")
+  GAService.trackClick("many_images", { quantity: imageQuantity.value })
 }
 
 

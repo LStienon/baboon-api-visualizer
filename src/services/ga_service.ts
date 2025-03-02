@@ -1,14 +1,14 @@
-import {useGtm} from "@gtm-support/vue-gtm";
+import {useGtag} from 'vue-gtag-next'
 
 export const GAService = {
 
-  trackClick: (buttonName: string) => {
-    const gtm = useGtm();
-    gtm?.trackEvent({
+  trackClick: (buttonName: string, data: Record<string, any> = {}) => {
+    const {event} = useGtag()
+    event("click", {
       event: 'click_api_button',
       category: 'API Usage',
-      action: 'click',
-      label: buttonName
+      label: buttonName,
+      ...data,
     })
   }
 

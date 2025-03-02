@@ -16,7 +16,7 @@ const fetchSizedImage = async () => {
 }
 const clickAction = async () => {
   await fetchSizedImage()
-  GAService.trackClick("sized_image")
+  GAService.trackClick("sized_image", { dimensions: imageSize.value })
 }
 
 const imageSize = ref<{

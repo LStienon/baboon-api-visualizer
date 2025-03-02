@@ -2,7 +2,6 @@
 import GithubIcon from '../assets/icons/github-brands-solid.svg';
 import BookIcon from '../assets/icons/book-solid.svg'
 import {useClientStore} from "../stores/client_store.ts";
-import {onMounted, watch} from "vue";
 
 const clientStore = useClientStore()
 
@@ -14,7 +13,6 @@ const goToApiDoc = () => {
   window.open(url, '_blank')
 }
 const goToCv = () => {
-  console.log('henlko')
   window.open("https://laurentstienon.com/", '_blank')
 }
 </script>

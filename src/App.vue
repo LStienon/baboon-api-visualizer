@@ -7,7 +7,6 @@ import ManyRandomImagesSection from "./components/sections/ManyRandomImagesSecti
 import BaboonFooter from "./components/BaboonFooter.vue";
 import {onMounted} from "vue";
 import {useClientStore} from "./stores/client_store.ts";
-
 const {initThingies} = useClientStore()
 
 onMounted(() => {

@@ -9,15 +9,20 @@ import {GAService} from "../../services/ga_service.ts";
 const currentImageUrl = ref<string>("")
 const loading = ref<boolean>(false)
 const initDone = ref<boolean>(false)
+
 const fetchNewImage = async () => {
   if (!initDone.value) initDone.value = true
   loading.value = true
   currentImageUrl.value = await BaboonApiService.getOneMadeByAI()
   loading.value = false
 }
+
 const clickAction = async () => {
+  const startTime = performance.now()
   await fetchNewImage()
-  GAService.trackClick("ai_image")
+  const endTime = performance.now()
+  const generationTime = Math.round((endTime - startTime) / 1000)
+  GAService.trackClick("ai_image", { generationTime: generationTime })
 }
 
 </script>
